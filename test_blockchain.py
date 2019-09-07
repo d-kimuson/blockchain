@@ -39,3 +39,5 @@ def test_validate_chain(chain):
     chain.create_block()
     assert chain.validate_chain()
 
+def test_print_block(chain):
+    chain.print_blocks()

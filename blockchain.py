@@ -79,3 +79,9 @@ class Blockchain:
                     ))
                 return False
         return True
+
+    def print_blocks(self) -> None:
+        for i in range(len(self.chain)):
+            current_block = self.chain[i]
+            print(f"# Block {i} {current_block}")
+            current_block.print_contents()

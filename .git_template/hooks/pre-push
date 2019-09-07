@@ -2,7 +2,6 @@
 
 # pushを禁止するブランチ
 readonly MASTER='master'
-readonly RELEASE='^.*release.*$'  # 「release」文字列を含む全てのブランチ
 
 while read local_ref local_sha1 remote_ref remote_sha1
 do

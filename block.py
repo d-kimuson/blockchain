@@ -29,3 +29,10 @@ class Block:
     @property
     def proof(self) -> str:
         return self.generate_hash()
+
+    def print_contents(self) -> None:
+        print("time:", datetime.fromtimestamp(self.time))
+        print("nonce:", self.nonce)
+        print("transactions:", self.transactions)
+        print("current hash:", self.generate_hash())
+        print("previous hash:", self.previous_hash)

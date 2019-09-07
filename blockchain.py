@@ -94,7 +94,7 @@ class Blockchain:
         return transactions
 
     @property
-    def wallet(self):
+    def wallets(self):
         return Wallets(self.ledger)
 
 

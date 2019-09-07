@@ -33,6 +33,17 @@ class Blockchain:
                 amount=transaction['amount']
             )
 
+    def pop_transactions(self) -> list:
+        _ = self.unconfirmed_transactions
+        self.unconfirmed_transactions = []
+        return _
+
+    def create_block(self) -> None:
+        previous = self.chain[-1]
+        new_block = Block(self.pop_transactions(), previous.hash)
+        self.proof_of_work(new_block)
+        self.chain.append(new_block)
+
     def proof_of_work(self, block: Block) -> None:
         block.nonce = 0
         while self.valid_proof(block):

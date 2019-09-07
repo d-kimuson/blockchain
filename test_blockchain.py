@@ -18,3 +18,13 @@ def test_add_transaction_s(chain):
             'amount': 300
         }]
     )
+
+def test_create_block(chain):
+    chain.add_transactions(
+        [{
+            'sender': 'taro',
+            'receiver': 'jiro',
+            'amount': 300
+        }]
+    )
+    chain.create_block()

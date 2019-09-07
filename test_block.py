@@ -15,3 +15,6 @@ def test_set_hash(block):
 
 def test_block_header(block):
     assert type(block.block_header) is str
+
+def test_print_contents(block):
+    block.print_contents()

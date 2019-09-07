@@ -1,6 +1,7 @@
 # add
 .vscode/
 */.vscode/
+*.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

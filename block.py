@@ -25,3 +25,7 @@ class Block:
             'previous_hash': self.previous_hash,
             'nonce': self.nonce,
         }, sort_keys=True)
+
+    @property
+    def proof(self) -> str:
+        return self.generate_hash()

@@ -52,3 +52,30 @@ class Blockchain:
 
     def valid_proof(self, block: Block) -> bool:
         return block.proof[:self.difficulty] != "0" * self.difficulty
+
+    def validate_block(self, block: Block) -> bool:
+        if block.hash != block.generate_hash():
+            print(f"[Fail to validate] hash changed.")
+            print(f"Hash {block.generate_hash()} changed from {block.hash}.")
+            return False
+        if self.valid_proof(block):
+            print(f"[Fail to validate] Proof Of Work does not hold up.")
+            return False
+        return True
+
+    def validate_chain(self) -> bool:
+        if not self.validate_block(self.chain[0]):
+            return False
+
+        for i in range(1, len(self.chain)):
+            current = self.chain[i]
+            if not self.validate_block(current):
+                return False
+            if current.previous_hash != self.chain[i-1].hash:
+                print(f"[Fail to validate] Hash does not connect.")
+                print("{} is not equals to {}".format(
+                    current.previous_hash,
+                    self.chain[i-1].hash
+                    ))
+                return False
+        return True

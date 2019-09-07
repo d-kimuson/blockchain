@@ -28,3 +28,14 @@ def test_create_block(chain):
         }]
     )
     chain.create_block()
+
+def test_validate_chain(chain):
+    chain.add_transactions([
+        {'sender': 'taro', 'receiver': 'jiro', 'amount': 300},
+        {'sender': 'watanabe', 'receiver': 'jiro', 'amount': 200},
+        {'sender': 'tarounosuke', 'receiver': 'taro', 'amount': 1000},
+        ])
+
+    chain.create_block()
+    assert chain.validate_chain()
+

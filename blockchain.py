@@ -13,6 +13,26 @@ class Blockchain:
         self.proof_of_work(genesis_block)
         self.chain.append(genesis_block)
 
+    def add_transaction(self, amount: int, sender: str, receiver: str) -> None:
+        self.unconfirmed_transactions.append({
+            'sender': sender,
+            'receiver': receiver,
+            'amount': amount
+        })
+
+    def add_transactions(self, transactions: list) -> None:
+        for transaction in transactions:
+            diff = set(transaction.keys()) - set(['sender',
+                                                  'receiver',
+                                                  'amount'])
+            assert diff == set(), f'Index error, {diff}.'
+        for transaction in transactions:
+            self.add_transaction(
+                sender=transaction['sender'],
+                receiver=transaction['receiver'],
+                amount=transaction['amount']
+            )
+
     def proof_of_work(self, block: Block) -> None:
         block.nonce = 0
         while self.valid_proof(block):

@@ -85,3 +85,29 @@ class Blockchain:
             current_block = self.chain[i]
             print(f"# Block {i} {current_block}")
             current_block.print_contents()
+
+    @property
+    def ledger(self):
+        transactions = []
+        for block in self.chain:
+            transactions.extend(block.transactions)
+        return transactions
+
+    @property
+    def wallet(self):
+        return Wallets(self.ledger)
+
+
+class Wallets(dict):
+    def __init__(self, ledger: list) -> None:
+        super().__init__()
+
+        for column in ledger:
+            sender = column['sender']
+            receiver = column['receiver']
+            if sender not in self.keys():
+                self[sender] = 0
+            if receiver not in self.keys():
+                self[receiver] = 0
+            self[sender] += int(column['amount'])
+            self[receiver] -= int(column['amount'])

@@ -41,3 +41,6 @@ def test_validate_chain(chain):
 
 def test_print_block(chain):
     chain.print_blocks()
+
+def test_wallet(chain):
+    chain.wallet
